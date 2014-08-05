@@ -90,6 +90,7 @@ public class PrivateChannelImpl extends ChannelImpl implements PrivateChannel {
         try {
             Map authResponseMap = new Gson().fromJson(authResponse, Map.class);
             String authKey = (String) authResponseMap.get("auth");
+            String channelData = (String) authResponseMap.get("channel_data");
 
             Map<Object, Object> jsonObject = new LinkedHashMap<Object, Object>();
             jsonObject.put("event", "pusher:subscribe");
@@ -97,6 +98,7 @@ public class PrivateChannelImpl extends ChannelImpl implements PrivateChannel {
             Map<Object, Object> dataMap = new LinkedHashMap<Object, Object>();
             dataMap.put("channel", name);
             dataMap.put("auth", authKey);
+            dataMap.put("channel_data", channelData);
 
             jsonObject.put("data", dataMap);
 
